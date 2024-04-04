@@ -2,7 +2,42 @@
   <div class="content">
     <h2>Personal Details</h2>
     <div class="form-container">
-      <p>personal-details works!</p>
+      <form [formGroup]="form">
+
+        <div class="row">
+          <label>Gender</label>
+          <mat-radio-group>
+            @for(gender of genders; track gender) {
+              <mat-radio-button [value]="gender" (change)="setGender(gender)">{{gender | titlecase}}</mat-radio-button>
+            }
+          </mat-radio-group>
+        </div>
+
+        <div class="row">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input type="text" placeholder="Max" matInput [formControl]="form.controls.firstName"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input type="text" placeholder="Man" matInput [formControl]="form.controls.lastName"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input type="text" placeholder="01.01.1990" matInput [formControl]="form.controls.dateOfBirth"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Nationality</mat-label>
+            <input type="text" placeholder="German" matInput [formControl]="form.controls.nationality"/>
+          </mat-form-field>
+        </div>
+      </form>
     </div>
   </div>
 </div>

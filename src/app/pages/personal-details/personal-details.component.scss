@@ -10,13 +10,23 @@
     display: flex;
     flex-direction: column;
     margin: 10px;
+    width: 100%;
+
+    @media screen and (min-width: 750px) {
+      max-width: 500px;
+    }
 
     .form-container {
-      width: 100%;
       background-color: white;
 
-      @media screen and (min-width: 750px) {
-        max-width: 500px;
+      .row {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+
+        mat-form-field {
+          width: 100%;
+        }
       }
     }
 
