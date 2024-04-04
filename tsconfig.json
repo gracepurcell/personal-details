@@ -26,6 +26,7 @@
     ],
     "paths": {
       "@shared/*": ["src/app/shared/*"],
+      "@states/*": ["src/app/states/*"],
     }
   },
   "angularCompilerOptions": {
