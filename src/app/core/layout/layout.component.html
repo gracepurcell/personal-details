@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="nav">
+    <mat-button-toggle-group>
+      @for (tab of tabs; track tab) {
+        <mat-button-toggle
+          [routerLink]="tab.path"
+          [routerLinkActive]="['mat-button-toggle-checked']">
+          {{tab.label}}
+        </mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>
+  <router-outlet></router-outlet>
+</div>
