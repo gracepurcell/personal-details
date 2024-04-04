@@ -3,6 +3,6 @@ export interface IPersonalDetails {
   gender: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dob: string;
   nationality: string;
 };

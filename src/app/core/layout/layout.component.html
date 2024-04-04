@@ -1,14 +1,24 @@
 <div class="container">
   <div class="nav">
-    <mat-button-toggle-group>
-      @for (tab of tabs; track tab) {
-        <mat-button-toggle
-          [routerLink]="tab.path"
-          [routerLinkActive]="['mat-button-toggle-checked']">
-          {{tab.label}}
-        </mat-button-toggle>
-      }
-    </mat-button-toggle-group>
+    <div class="edge-container">
+      <div>
+        Inyova
+      </div>
+      <mat-button-toggle-group>
+        @for (tab of tabs; track tab) {
+          <mat-button-toggle
+            [routerLink]="tab.path"
+            [routerLinkActive]="['mat-button-toggle-checked']">
+            {{tab.label}}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="edge-container">
+      <button mat-button>Investment</button>
+      <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+    </div>
   </div>
   <router-outlet></router-outlet>
 </div>

@@ -4,40 +4,45 @@
     <div class="form-container">
       <form [formGroup]="form">
 
-        <div class="row">
+        <div class="row col">
           <label>Gender</label>
-          <mat-radio-group>
+          <mat-radio-group [formControl]="form.controls.gender">
             @for(gender of genders; track gender) {
-              <mat-radio-button [value]="gender" (change)="setGender(gender)">{{gender | titlecase}}</mat-radio-button>
+              <mat-radio-button [value]="gender" >{{gender | titlecase}}</mat-radio-button>
             }
           </mat-radio-group>
         </div>
 
         <div class="row">
-          <mat-form-field>
+          <mat-form-field floatLabel="always">
             <mat-label>First Name</mat-label>
             <input type="text" placeholder="Max" matInput [formControl]="form.controls.firstName"/>
           </mat-form-field>
         </div>
         <div class="row">
-          <mat-form-field>
+          <mat-form-field floatLabel="always">
             <mat-label>Last Name</mat-label>
             <input type="text" placeholder="Man" matInput [formControl]="form.controls.lastName"/>
           </mat-form-field>
         </div>
-        <div class="row">
-          <mat-form-field>
+        <div class="row grid-3">
+          <mat-form-field floatLabel="always">
             <mat-label>Date of Birth</mat-label>
-            <input type="text" placeholder="01.01.1990" matInput [formControl]="form.controls.dateOfBirth"/>
+            <input matInput placeholder="MM/DD/YYYY" [formControl]="form.controls.dob" [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="row">
-          <mat-form-field>
+          <mat-form-field floatLabel="always">
             <mat-label>Nationality</mat-label>
             <input type="text" placeholder="German" matInput [formControl]="form.controls.nationality"/>
           </mat-form-field>
         </div>
+
       </form>
     </div>
+    <button mat-button type="submit" (click)="submit()">Submit</button>
+
   </div>
 </div>

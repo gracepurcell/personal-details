@@ -12,7 +12,9 @@ import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { addDetails } from '@states/personal-details/personal-details.actions';
-
+import { Notifications } from '@shared/services/notification.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 type PersonalDetailsForm = ToFormGroup<IPersonalDetails>;
 @Component({
@@ -26,6 +28,10 @@ type PersonalDetailsForm = ToFormGroup<IPersonalDetails>;
     MatInputModule,
     MatButtonModule,
     MatRadioModule,
+    MatDatepickerModule
+  ],
+  providers: [
+    provideNativeDateAdapter()
   ],
   templateUrl: './personal-details.component.html',
   styleUrl: './personal-details.component.scss'
@@ -35,15 +41,23 @@ export class PersonalDetailsComponent {
   form: FormGroup<PersonalDetailsForm>;
   genders = Object.values(Gender);
 
+  minDate: Date;
+  maxDate: Date;
+
   constructor(
+    private _notifications: Notifications,
     private _store: Store<{personalDetails: IPersonalDetails}>,
   ) {
+
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 90);
+    this.maxDate = new Date();
 
     this.form = new FormGroup<PersonalDetailsForm>({
       gender: new FormControl<string>('', Validators.required),
       firstName: new FormControl<string>('', Validators.required),
       lastName: new FormControl<string>('', Validators.required),
-      dateOfBirth: new FormControl<string>('', Validators.required),
+      dob: new FormControl<string>('', Validators.required),
       nationality: new FormControl<string>('', Validators.required),
     });
 
@@ -59,14 +73,12 @@ export class PersonalDetailsComponent {
       .subscribe((value) => this.form.patchValue(value));
   }
 
-  setGender(value: Gender) {
-    this.form.controls.gender.patchValue(value);
-  }
 
   submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.form.markAsDirty();
+      this._notifications.showError('Some fields are missing');
       return;
     }
 
@@ -76,6 +88,7 @@ export class PersonalDetailsComponent {
 
   private _patchValue(details: IPersonalDetails) {
     this._store.dispatch(addDetails(details));
+    this._notifications.showSuccess('Successfully updated Details');
   }
 
 }

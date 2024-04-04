@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RouterModule } from '@angular/router';
@@ -8,7 +10,9 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     MatButtonToggleModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'

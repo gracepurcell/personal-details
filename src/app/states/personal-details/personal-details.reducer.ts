@@ -6,7 +6,7 @@ export const initialState: IPersonalDetails = {
   gender: '',
   firstName: '',
   lastName: '',
-  dateOfBirth: '',
+  dob: '',
   nationality: '',
 }
 

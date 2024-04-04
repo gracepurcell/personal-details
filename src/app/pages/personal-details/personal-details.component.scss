@@ -11,9 +11,21 @@
     flex-direction: column;
     margin: 10px;
     width: 100%;
+    gap: 15px;
 
     @media screen and (min-width: 750px) {
       max-width: 500px;
+    }
+
+    h2 {
+      margin-bottom: 0px;
+      font-family: serif;
+      font-size: 48px;
+    }
+
+    button {
+      background-color: black;
+      color: white;
     }
 
     .form-container {
@@ -23,6 +35,11 @@
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
+
+        &.col {
+          display: flex;
+          flex-direction: column;
+        }
 
         mat-form-field {
           width: 100%;
